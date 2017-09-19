@@ -8,6 +8,7 @@ feature 'Viewing links' do
 
     within 'ul#links' do
       expect(page).to have_content('Makers Academy')
+      expect(page).to have_content('http://www.makersacademy.com')
     end
   end
 end
