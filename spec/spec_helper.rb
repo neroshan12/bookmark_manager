@@ -13,33 +13,24 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+ENV['RACK_ENV'] = 'test'
+
+# require our Sinatra app file
+require File.join(File.dirname(__FILE__), '..', 'app/app.rb')
+
+require 'capybara'
+require 'capybara/rspec'
+require 'rspec'
+require './app/models/link'
+require './app/app'
+
+# tell Capybara about our app class
+Capybara.app = BookmarkManager
+
 RSpec.configure do |config|
-  ENV['RACK_ENV'] = 'test'
 
-  # require our Sinatra app file
-  require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
-  require 'capybara'
-  require 'capybara/rspec'
-  require 'rspec'
 
-  # tell Capybara about our app class
-  Capybara.app = BookmarkManager
-
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::Console,
-    # Want a nice code coverage website? Uncomment this next line!
-    # SimpleCov::Formatter::HTMLFormatter
-  ])
-  SimpleCov.start
-
-  RSpec.configure do |config|
-    config.after(:suite) do
-      puts
-      puts "\e[33mHave you considered running rubocop? It will help you improve your code!\e[0m"
-      puts "\e[33mTry it now! Just run: rubocop\e[0m"
-    end
-  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
