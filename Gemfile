@@ -7,6 +7,7 @@ gem 'database_cleaner'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'
+gem 'rake'
 gem 'rubocop'
 gem 'sinatra'
 
