@@ -1,5 +1,4 @@
 feature 'Creating links' do
-
   scenario 'I can use a form to create a link' do
     visit '/links/new'
       fill_in 'url', with: 'http://www.makersacademy.com'
