@@ -16,6 +16,7 @@ class User
   # only 50 characters by default
   # and it's not enough for the hash and salt
   property :password_digest, Text
+  property :email, String, required: true, unique: true
 
   # when assigned the password, we don't store it directly
   # instead, we generate a password digest, that looks like this:
@@ -35,4 +36,5 @@ class User
     self.password_digest = BCrypt::Password.create(password)
   end
   validates_confirmation_of :password
+  validates_format_of :email, as: :email_address
 end
